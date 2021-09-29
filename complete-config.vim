@@ -9,12 +9,16 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 let g:completion_trigger_on_delete = 1
+let g:completion_matching_smart_case = 1
+let g:completion_enable_auto_signature = 0
 "let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
+
+autocmd BufEnter * lua require'completion'.on_attach()
 
 augroup CompletionTriggerCharacter
     autocmd!
     autocmd BufEnter * let g:completion_trigger_character = ['.']
-    autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::']
+    autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->']
 augroup end
 
 
