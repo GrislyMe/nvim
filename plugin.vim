@@ -6,11 +6,11 @@ Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 
 "auto complete
-Plug 'nvim-lua/completion-nvim'
-
-"Plug 'hrsh7th/nvim-compe'
-"Plug 'hrsh7th/vim-vsnip'
-"Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 
 "LSP
 Plug 'kabouzeid/nvim-lspinstall'
@@ -48,8 +48,6 @@ call plug#end()
 
 "Set LSP & autocomplete
 set completeopt=menu,menuone,noinsert
-"lua require'lspconfig'.clangd.setup{on_attach=require'completion'.on_attach}
-"lua require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
 "Set LSP & autocomplete
 
 "Set tagbar

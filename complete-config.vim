@@ -1,24 +1,32 @@
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+set completeopt=menu,menuone,noselect
 
-" Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+lua <<EOF
+  -- Setup nvim-cmp.
+  local cmp = require'cmp'
 
-" Avoid showing message extra message when using completion
-set shortmess+=c
+  cmp.setup({
+    snippet = {
+      expand = function(args)
+		vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    mapping = {
+      ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
+    },
+    sources = {
+      { name = 'nvim_lsp' },
+	  { name = 'vsnip' },
+	  { name = 'buffer' }
+    }
+  })
 
-let g:completion_trigger_on_delete = 1
-let g:completion_matching_smart_case = 1
-let g:completion_enable_auto_signature = 0
-"let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy', 'all']
-
-autocmd BufEnter * lua require'completion'.on_attach()
-
-augroup CompletionTriggerCharacter
-    autocmd!
-    autocmd BufEnter * let g:completion_trigger_character = ['.']
-    autocmd BufEnter *.c,*.cpp let g:completion_trigger_character = ['.', '::', '->']
-augroup end
-
-
+  -- Setup lspconfig.
+  require('lspconfig')['clangd'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
+  require('lspconfig')['pyright'].setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  }
+EOF
