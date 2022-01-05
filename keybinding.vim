@@ -14,7 +14,7 @@ map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
 map <leader>l :wincmd l<CR>
-nnoremap <leader>gs :Gstatus<CR>
+"nnoremap <leader>gs :Gstatus<CR>
 "nnoremap gdh :diffget //2<CR> nnoremap gdl :diffget //3<CR>
 nnoremap <silent><leader>e :Defx<CR>
 nnoremap <silent><leader>t :ToggleTerm size=10 direction=horizontal<CR>

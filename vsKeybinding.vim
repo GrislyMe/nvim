@@ -18,8 +18,8 @@ nnoremap <leader>ek :call VSCodeNotify('cursorUp')<CR>
 nnoremap <leader>el :call VSCodeNotify('cursorRight')<CR>
 
 nnoremap <leader>gs :Gstatus<CR>
-nnoremap gdh :diffget //2<CR>
-nnoremap gdl :diffget //3<CR>
+"nnoremap gdh :diffget //2<CR>
+"nnoremap gdl :diffget //3<CR>
 map <F3> :NERDTreeToggle<CR>
 map <F4> :TagbarToggle<CR>
 map <F5> :split<CR> :wincmd j<CR> :term<CR> :resize 10<CR>
