@@ -21,6 +21,20 @@ nnoremap <silent><leader>t :ToggleTerm size=10 direction=horizontal<CR>
 imap <Home> <Esc>^i
 tnoremap <Esc> <C-\><C-n>
 
+xnoremap <silent> < c<><Esc>P
+xnoremap <silent> ( c()<Esc>P
+xnoremap <silent> [ c[]<Esc>P
+xnoremap <silent> { c{}<Esc>P
+xnoremap <silent> ' c''<Esc>P
+xnoremap <silent> " c""<Esc>P
+
+xnoremap <silent> > i<d<Esc>vhp
+xnoremap <silent> ) i(d<Esc>vhp
+xnoremap <silent> ] i[d<Esc>vhp
+xnoremap <silent> } i{d<Esc>vhp
+xnoremap <silent> ' i'd<Esc>vhp
+xnoremap <silent> " i"d<Esc>vhp
+
 "autocompe
 nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
 nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
