@@ -8,6 +8,7 @@ source $HOME/.config/nvim/complete-config.vim
 source $HOME/.config/nvim/treesitter.lua
 source $HOME/.config/nvim/neovide.vim
 source $HOME/.config/nvim/welcome.vim
+source $HOME/.config/nvim/terminal.lua
 colorscheme gruvbox
 au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
 set foldmethod=expr

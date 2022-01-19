@@ -17,9 +17,9 @@ map <leader>l :wincmd l<CR>
 "nnoremap <leader>gs :Gstatus<CR>
 "nnoremap gdh :diffget //2<CR> nnoremap gdl :diffget //3<CR>
 nnoremap <silent><leader>e :Defx<CR>
-nnoremap <silent><leader>t :ToggleTerm size=10 direction=horizontal<CR>
+nnoremap <silent><leader>t :ToggleTerm<CR>
 imap <Home> <Esc>^i
-tnoremap <Esc> <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>:q<CR>
 
 xnoremap <silent> < c<><Esc>P
 xnoremap <silent> ( c()<Esc>P
