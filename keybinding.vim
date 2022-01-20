@@ -14,12 +14,13 @@ map <leader>h :wincmd h<CR>
 map <leader>j :wincmd j<CR>
 map <leader>k :wincmd k<CR>
 map <leader>l :wincmd l<CR>
-"nnoremap <leader>gs :Gstatus<CR>
-"nnoremap gdh :diffget //2<CR> nnoremap gdl :diffget //3<CR>
 nnoremap <silent><leader>e :Defx<CR>
 nnoremap <silent><leader>t :ToggleTerm<CR>
 imap <Home> <Esc>^i
 tnoremap <Esc> <C-\><C-n>:q<CR>
+
+map <leader><S-Tab> :bp<CR>
+map <leader><Tab> :bn<CR>
 
 xnoremap <silent> < c<><Esc>P
 xnoremap <silent> ( c()<Esc>P
