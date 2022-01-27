@@ -24,9 +24,10 @@ lua <<EOF
   })
 
   -- Setup lspconfig.
-  local ls = { 'clangd', 'pyright'}
+  local ls = { 'clangd', 'pyright', 'kotlin_language_server'}
   for i, server in ipairs(ls) do
 	  require('lspconfig')[server].setup {
+		on_attach = on_attach,
 		capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 	  }
   end

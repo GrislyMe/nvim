@@ -31,9 +31,13 @@ Plug 'vim-airline/vim-airline'
 "language support
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'rhysd/vim-clang-format'
+"Plug 'udalov/kotlin-vim'
 
 "git
 Plug 'tpope/vim-fugitive'
+
+"maven
+Plug 'mikelue/vim-maven-plugin'
 
 "terminal
 Plug 'akinsho/nvim-toggleterm.lua'
@@ -45,7 +49,7 @@ call plug#end()
 "Set Vim-Plug
 
 "Set LSP & autocomplete
-set completeopt=menu,menuone,noinsert
+"set completeopt=menu,menuone,noinsert
 "Set LSP & autocomplete
 
 "Set tagbar
