@@ -13,8 +13,11 @@ return require("packer").startup(function()
 	use 'hrsh7th/cmp-buffer'
 
 	-- LSP
-	use 'williamboman/nvim-lsp-installer'
 	use 'neovim/nvim-lspconfig'
+	use {
+		"williamboman/mason.nvim",
+		config = require("mason").setup(),
+	}
 	use 'glepnir/lspsaga.nvim'
 	use 'ray-x/lsp_signature.nvim'
 
@@ -32,7 +35,6 @@ return require("packer").startup(function()
 	-- language support
 	use {
 		'nvim-treesitter/nvim-treesitter',
-		config = 'vim.cmd[[TSUpdate]]'
 	}
 	use 'rhysd/vim-clang-format'
 	use {
@@ -43,9 +45,6 @@ return require("packer").startup(function()
 
 	-- git
 	-- use 'tpope/vim-fugitive'
-
-	-- maven
-	-- Plug 'mikelue/vim-maven-plugin'
 
 	-- terminal
 	use 'akinsho/nvim-toggleterm.lua'

@@ -21,7 +21,7 @@ cmp.setup({
 })
 
 -- Setup lspconfig.
-local ls = { 'clangd', 'pyright', 'kotlin_language_server'}
+local ls = { 'clangd', 'pyright', 'sumneko_lua'}
 for i, server in ipairs(ls) do
 	require('lspconfig')[server].setup {
 		on_attach = on_attach,
