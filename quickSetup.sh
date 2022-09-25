@@ -1,2 +1,4 @@
 #!/bin/sh
-ln -srf ./* ~/.config/nvim
+ln -srf ./*.lua ~/.config/nvim/lua
+ln -srf ./init.lua ~/.config/nvim
+rm ~/.config/nvim/lua/init.lua

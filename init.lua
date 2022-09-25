@@ -5,6 +5,7 @@ require('plugin')
 require('treesitter')
 require('terminal')
 require('complete_config')
+require('welcome')
 
 vim.cmd("colorscheme gruvbox")
 
