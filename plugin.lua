@@ -20,12 +20,11 @@ return require("packer").startup(function()
 
 	-- file explore
 	use {
-		'Shougo/defx.nvim',
-		config = 'vim.cmd[[UpdateRemotePlugins]]'
+		'kyazdani42/nvim-tree.lua',
+		requires = {
+			'kyazdani42/nvim-web-devicons',
+		}
 	}
-	use 'kristijanhusak/defx-icons'
-	use 'kristijanhusak/defx-git'
-
 	-- status bar
 	use 'majutsushi/tagbar'
 	use 'vim-airline/vim-airline'
@@ -53,6 +52,9 @@ return require("packer").startup(function()
 
 	-- other
 	use 'mhinz/vim-startify'
+
+	use 'svermeulen/vimpeccable'
+	use 'euclidianAce/BetterLua.vim'
 end)
 
 --call plug#end()

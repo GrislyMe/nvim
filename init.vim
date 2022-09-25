@@ -1,19 +1,14 @@
-if exists('g:vscode')
-	source $HOME/.config/nvim/vsKeybinding.vim
-else
-	source $HOME/.config/nvim/plugin.lua
-	source $HOME/.config/nvim/keybinding.vim
-	source $HOME/.config/nvim/plugin.lua
-	source $HOME/.config/nvim/defx-config.vim
-	source $HOME/.config/nvim/complete-config.vim
-	source $HOME/.config/nvim/treesitter.lua
-	source $HOME/.config/nvim/neovide.vim
-	source $HOME/.config/nvim/welcome.vim
-	source $HOME/.config/nvim/terminal.lua
-	au VimEnter * silent! !xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-	set foldmethod=expr
-	set foldexpr=nvim_treesitter#foldexpr()
-endif
+source $HOME/.config/nvim/nvim_tree_setup.lua
+source $HOME/.config/nvim/keybinding.lua
+source $HOME/.config/nvim/plugin.lua
+"source $HOME/.config/nvim/defx-config.vim
+source $HOME/.config/nvim/complete-config.vim
+source $HOME/.config/nvim/treesitter.lua
+source $HOME/.config/nvim/welcome.vim
+source $HOME/.config/nvim/terminal.lua
+
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 
 
 source $HOME/.config/nvim/basic.lua
