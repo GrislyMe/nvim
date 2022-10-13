@@ -13,6 +13,7 @@ require("nvim-tree").setup({
 				{ key = ">", action = "cd"},
 				{ key = "s", action = "vsplit"},
 				{ key = "hs", action = "split"},
+				{ key = "d", action = ""},
 				{ key = "dd", action = "remove"},
 				{ key = "v", action = ""},
 				{ key = "mv", action = "rename"},

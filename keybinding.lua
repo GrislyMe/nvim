@@ -15,10 +15,10 @@ vim.api.nvim_create_user_command('W', ':w', {})
 vim.api.nvim_create_user_command('Q', ':q', {})
 
 -- autoclose
-vim.api.nvim_set_keymap('i', '{', '{}<C-o>i', {})
-vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<esc>ko', {})
-vim.api.nvim_set_keymap('i', '(', '()<C-o>i', {})
-vim.api.nvim_set_keymap('i', '[', '[]<C-o>i', {})
+-- vim.api.nvim_set_keymap('i', '{', '{}<C-o>i', {})
+-- vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<esc>ko', {})
+-- vim.api.nvim_set_keymap('i', '(', '()<C-o>i', {})
+-- vim.api.nvim_set_keymap('i', '[', '[]<C-o>i', {})
 
 -- change focus
 vim.api.nvim_set_keymap('n', '<leader>h', ':wincmd h<CR>', {})
@@ -40,7 +40,7 @@ vim.api.nvim_set_keymap('i', '<Home>', '<Esc>^i', {})
 vim.api.nvim_set_keymap('n', '<leader><S-Tab>', ':bp<CR>', {})
 vim.api.nvim_set_keymap('n', '<leader><Tab>', ':bn<CR>', {})
 
--- close selected word
+-- wrap selected word
 vim.api.nvim_set_keymap('x', '<', 'c<><Esc>P', {})
 vim.api.nvim_set_keymap('x', '(', 'c()<Esc>P', {})
 vim.api.nvim_set_keymap('x', '[', 'c[]<Esc>P', {})
