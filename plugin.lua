@@ -18,7 +18,17 @@ return require("packer").startup(function()
 		"williamboman/mason.nvim",
 		config = require("mason").setup(),
 	}
-	use 'glepnir/lspsaga.nvim'
+	use({
+		"glepnir/lspsaga.nvim",
+		branch = "main",
+		config = function()
+				local saga = require("lspsaga")
+
+				saga.init_lsp_saga({
+						-- your configuration
+				})
+		end,
+	})
 	use 'ray-x/lsp_signature.nvim'
 
 	-- file explore

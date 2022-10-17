@@ -15,8 +15,8 @@ vim.api.nvim_create_user_command('W', ':w', {})
 vim.api.nvim_create_user_command('Q', ':q', {})
 
 -- autoclose
--- vim.api.nvim_set_keymap('i', '{', '{}<C-o>i', {})
--- vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<esc>ko', {})
+--vim.api.nvim_set_keymap('i', '{', '{}<C-o>i', {})
+vim.api.nvim_set_keymap('i', '{<CR>', '{<CR>}<esc>ko', {})
 -- vim.api.nvim_set_keymap('i', '(', '()<C-o>i', {})
 -- vim.api.nvim_set_keymap('i', '[', '[]<C-o>i', {})
 
@@ -53,8 +53,7 @@ vim.api.nvim_set_keymap('x', ')', 'i(d<Esc>vhp', {})
 vim.api.nvim_set_keymap('x', ']', 'i[d<Esc>vhp', {})
 vim.api.nvim_set_keymap('x', '}', 'i{d<Esc>vhp', {})
 
--- nnoremap <silent> gd <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
--- nnoremap <silent> gD <cmd>lua vim.lsp.buf.declaration()<CR>
--- nnoremap <silent> gr <cmd>lua vim.lsp.buf.references()<CR>
--- nnoremap <silent> gi <cmd>lua vim.lsp.buf.implementation()<CR>
--- nnoremap <silent> K <cmd>lua vim.lsp.buf.hover()<CR>
+vim.api.nvim_set_keymap('n', 'gf', ":Lspsaga lsp_finder<CR>", {})
+vim.api.nvim_set_keymap('n', 'gd', ":Lspsaga peek_definition<CR>", {})
+vim.api.nvim_set_keymap('n', '<leader>o', ":LSoutlineToggle<CR>", {})
+vim.api.nvim_set_keymap('n', '<F2>', ":Lspsaga rename<CR>", {})

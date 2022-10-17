@@ -15,7 +15,6 @@ vim.o.incsearch = true
 vim.o.cindent = true
 vim.o.confirm = true
 vim.o.laststatus = 2
-vim.o.list = true
 vim.o.showmode = true
 vim.o.showmatch = true
 vim.o.wrap = true
