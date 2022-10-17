@@ -16,9 +16,13 @@ vim.o.cindent = true
 vim.o.confirm = true
 vim.o.laststatus = 2
 vim.o.list = true
-vim.o.listchars = "tab:..,trail:•"
 vim.o.showmode = true
 vim.o.showmatch = true
 vim.o.wrap = true
 vim.o.autowrite = true
 vim.o.mouse = "a"
+
+vim.api.nvim_create_autocmd({"FileType"}, {
+	pattern = {"lua", "javascript", "html"},
+	command = "setlocal shiftwidth=2 tabstop=2"
+})

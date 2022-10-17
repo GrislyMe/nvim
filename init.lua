@@ -8,6 +8,7 @@ require('complete_config')
 require('welcome')
 
 vim.cmd("colorscheme gruvbox")
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
