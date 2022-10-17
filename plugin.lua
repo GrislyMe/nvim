@@ -30,7 +30,10 @@ return require("packer").startup(function()
 	}
 	-- status bar
 	use 'majutsushi/tagbar'
-	use 'vim-airline/vim-airline'
+	use {
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+	}
 
 	-- language support
 	use {
@@ -56,30 +59,3 @@ return require("packer").startup(function()
 	use 'euclidianAce/BetterLua.vim'
 end)
 
---call plug#end()
---"Set Vim-Plug
-
---"Set LSP & autocomplete
---"set completeopt=menu,menuone,noinsert
---"Set LSP & autocomplete
-
---"Set tagbar
---set tags=./tags,./TAGS,tags;~,TAGS;~
---let g:tagbar_ctags_bin = '/usr/bin/ctags'
---let g:tagbar_width=30
---let g:tarbar_left=1
---"Set tagbar
-
---"airline
---let g:airline#extensions#tabline#enabled = 1
---let g:airline_powerline_fonts = 1
---let g:airline_section_b = ' %{fugitive#statusline()}'
---"airline
-
---"set clang format
---autocmd FileType c,cpp,objc ClangFormatAutoEnable
---let g:clang_format#detect_style_file=1
---let g:clang_format#enable_fallback_style=0
---"set clang format
---
---let g:python_highlight_all=1

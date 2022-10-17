@@ -6,6 +6,7 @@ require('treesitter')
 require('terminal')
 require('complete_config')
 require('welcome')
+require('status_bar')
 
 vim.cmd("colorscheme gruvbox")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
