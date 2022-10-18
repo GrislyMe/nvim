@@ -63,7 +63,12 @@ return require("packer").startup(function()
 	use 'akinsho/nvim-toggleterm.lua'
 
 	-- other
-	use 'mhinz/vim-startify'
+	use {
+		"glepnir/dashboard-nvim",
+		config = function()
+			require("config.dashboard").setup()
+		end,
+	}
 
 	use 'svermeulen/vimpeccable'
 	use 'euclidianAce/BetterLua.vim'
