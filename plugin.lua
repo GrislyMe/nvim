@@ -1,76 +1,99 @@
-return require("packer").startup(function()
+vim.g.mapleader = " "
 
-	use 'wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
-	-- call plug#begin('~/.local/share/nvim/plugins')
-	use 'tomasr/molokai'
-	use 'morhetz/gruvbox'
+require("lazy").setup({
+	{"tomasr/molokai", lazy = true},
+	{"morhetz/gruvbox", lazy = true},
 
 	-- auto complete
-	use 'hrsh7th/nvim-cmp'
-	use 'hrsh7th/cmp-path'
-	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-buffer'
+	{"hrsh7th/nvim-cmp"},
+	{"hrsh7th/cmp-path"},
+	{"hrsh7th/cmp-nvim-lsp"},
+	{"hrsh7th/cmp-buffer"},
 
 	-- LSP
-	use 'neovim/nvim-lspconfig'
-	use {
+	{"neovim/nvim-lspconfig"},
+	{
 		"williamboman/mason.nvim",
-		config = require("mason").setup(),
-	}
-	use({
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		config = function()
-				local saga = require("lspsaga")
-
-				saga.init_lsp_saga({
-						-- your configuration
-				})
+		init = function()
+			require("mason").setup()
 		end,
-	})
-	use 'ray-x/lsp_signature.nvim'
+		cmd = "Mason",
+	},
+	{
+    "glepnir/lspsaga.nvim",
+    event = "BufRead",
+    config = function()
+        require("lspsaga").setup({
+					border_style = "single",
+				})
+    end,
+    dependencies = { {"nvim-tree/nvim-web-devicons"} }
+	},
+	{"ray-x/lsp_signature.nvim"},
 
 	-- file explore
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = {
-			'kyazdani42/nvim-web-devicons',
-		}
-	}
+	{
+		"kyazdani42/nvim-tree.lua",
+    dependencies = { {"nvim-tree/nvim-web-devicons"} }
+	},
+
 	-- status bar
-	use 'majutsushi/tagbar'
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
+	{"majutsushi/tagbar"},
+	{
+		"nvim-lualine/lualine.nvim",
+    dependencies = { {"nvim-tree/nvim-web-devicons"} }
+	},
 
 	-- language support
-	use {
-		'nvim-treesitter/nvim-treesitter',
-	}
-	use 'rhysd/vim-clang-format'
-	use {
-		'instant-markdown/vim-instant-markdown',
-		ft = {'markdown'},
-		config = 'vim.cmd[[yarn install]]'
-	}
-
-	-- git
-	-- use 'tpope/vim-fugitive'
+	{"nvim-treesitter/nvim-treesitter"},
+	{"jiangmiao/auto-pairs"},
 
 	-- terminal
-	use 'akinsho/nvim-toggleterm.lua'
+	{"akinsho/nvim-toggleterm.lua"},
 
 	-- other
-	use {
-		"glepnir/dashboard-nvim",
-		config = function()
-			require("config.dashboard").setup()
-		end,
-	}
+	{
+		'glepnir/dashboard-nvim',
+		event = 'VimEnter',
+		opts = {
 
-	use 'svermeulen/vimpeccable'
-	use 'euclidianAce/BetterLua.vim'
-end)
+		},
+		init = function()
+			require("dashboard").setup({
+				theme = 'hyper',
+				config = {
+					header = {
+					[[____________________________________________________________]],
+					[[|                                                          |]],
+					[[|    ███╗░░██╗███████╗░█████╗░██╗░░░██╗██╗███╗░░░███╗      |]],
+					[[|    ████╗░██║██╔════╝██╔══██╗██║░░░██║██║████╗░████║      |]],
+					[[|    ██╔██╗██║█████╗░░██║░░██║╚██╗░██╔╝██║██╔████╔██║      |]],
+					[[|    ██║╚████║██╔══╝░░██║░░██║░╚████╔╝░██║██║╚██╔╝██║      |]],
+					[[|    ██║░╚███║███████╗╚█████╔╝░░╚██╔╝░░██║██║░╚═╝░██║      |]],
+					[[|    ╚═╝░░╚══╝╚══════╝░╚════╝░░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝      |]],
+					[[|                     █▀▀ █▀█ █ █▀ █░░ █▄█ █▀▄▀█ █▀▀       |]],
+					[[|                     █▄█ █▀▄ █ ▄█ █▄▄ ░█░ █░▀░█ ██▄       |]],
+					[[|                                                          |]],
+					[[|__________________________________________________________|]],
+					},
+				}
+			})
+		end,
+		dependencies = { {'nvim-tree/nvim-web-devicons'}}
+	},
+	})
+
 

@@ -30,8 +30,3 @@ for i, server in ipairs(ls) do
 end
 
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
-
--- set lspsaga
-require('lspsaga').init_lsp_saga({
-	border_style = "single",
-})

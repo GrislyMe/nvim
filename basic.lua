@@ -1,3 +1,10 @@
+vim.cmd("colorscheme gruvbox")
+vim.cmd("set colorcolumn=80")
+vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+
 vim.o.syntax = "on"
 vim.o.encoding = "utf-8"
 vim.o.backspace = "indent,eol,start"
