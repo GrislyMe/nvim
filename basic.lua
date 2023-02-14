@@ -28,7 +28,7 @@ vim.o.wrap = true
 vim.o.autowrite = true
 vim.o.mouse = "a"
 
-vim.api.nvim_create_autocmd({"FileType"}, {
-	pattern = {"lua", "javascript", "html"},
-	command = "setlocal shiftwidth=2 tabstop=2"
+vim.api.nvim_create_autocmd({ "FileType" }, {
+		pattern = { "lua", "javascript", "html", "cpp" },
+		command = "setlocal shiftwidth=2 tabstop=2"
 })
