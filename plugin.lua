@@ -14,8 +14,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	-- scheme
 	{ "tomasr/molokai",       lazy = true },
 	{ "morhetz/gruvbox",      lazy = true },
+
+	-- git
+	{ "tpope/vim-fugitive" },
 
 	-- auto complete
 	{ "hrsh7th/nvim-cmp" },
@@ -52,8 +56,7 @@ require("lazy").setup({
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.clang_format,
-					null_ls.builtins.diagnostics.eslint,
-					null_ls.builtins.completion.spell,
+					null_ls.builtins.formatting.yapf,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
