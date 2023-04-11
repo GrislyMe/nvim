@@ -21,7 +21,7 @@ cmp.setup({
 })
 
 -- Setup lspconfig.
-local ls = { 'clangd', 'pyright', 'sumneko_lua'}
+local ls = { 'clangd', 'pyright', 'lua_ls'}
 for i, server in ipairs(ls) do
 	require('lspconfig')[server].setup {
 		on_attach = on_attach,
