@@ -5,6 +5,8 @@ vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
+vim.opt.list = true
+
 vim.o.syntax = "on"
 vim.o.encoding = "utf-8"
 vim.o.backspace = "indent,eol,start"
@@ -29,6 +31,6 @@ vim.o.autowrite = true
 vim.o.mouse = "a"
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-		pattern = { "lua", "javascript", "html", "cpp" },
-		command = "setlocal shiftwidth=2 tabstop=2"
+	pattern = { "lua", "javascript", "html", "cpp" },
+	command = "setlocal shiftwidth=2 tabstop=2",
 })
