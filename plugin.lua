@@ -15,8 +15,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- scheme
-	{ "tomasr/molokai",       lazy = true },
-	{ "morhetz/gruvbox",      lazy = true },
+	{ "tomasr/molokai",      lazy = true },
+	{ "morhetz/gruvbox",     lazy = true },
 
 	-- git
 	{ "tpope/vim-fugitive" },
@@ -37,12 +37,10 @@ require("lazy").setup({
 		cmd = "Mason",
 	},
 	{
-		"glepnir/lspsaga.nvim",
+		"nvimdev/lspsaga.nvim",
 		event = "BufRead",
 		config = function()
-			require("lspsaga").setup({
-				border_style = "single",
-			})
+			require("lspsaga").setup()
 		end,
 		dependencies = { { "nvim-tree/nvim-web-devicons" } },
 	},
