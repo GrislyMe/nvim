@@ -56,7 +56,8 @@ require("lazy").setup({
 				sources = {
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.clang_format,
-					null_ls.builtins.formatting.yapf,
+					null_ls.builtins.formatting.black,
+					null_ls.builtins.formatting.isort,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then

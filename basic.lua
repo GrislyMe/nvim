@@ -1,6 +1,7 @@
 vim.cmd("colorscheme gruvbox")
 vim.cmd("set colorcolumn=80")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
+vim.cmd("set scl=yes:1")
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
