@@ -15,8 +15,25 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- scheme
-	{ "tomasr/molokai",      lazy = true },
-	{ "morhetz/gruvbox",     lazy = true },
+	{ "tomasr/molokai", lazy = true },
+	{ "morhetz/gruvbox", lazy = true },
+
+	-- leetcode
+	{
+		"kawre/leetcode.nvim",
+		build = ":TSUpdate html",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim", -- required by telescope
+			"MunifTanjim/nui.nvim",
+
+			-- optional
+			"rcarriga/nvim-notify",
+		},
+		opts = {
+			-- configuration goes here
+		},
+	},
 
 	-- git
 	{ "tpope/vim-fugitive" },
