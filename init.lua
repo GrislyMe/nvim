@@ -1,5 +1,6 @@
 require('plugin')
 require('basic')
+require('debug_config')
 require('keybinding')
 require('treesitter')
 require('terminal')

@@ -14,6 +14,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+	{ 'nvimtools/hydra.nvim' },
+
 	-- scheme
 	{ "tomasr/molokai",       lazy = true },
 	{ "morhetz/gruvbox",      lazy = true },
@@ -37,6 +39,16 @@ require("lazy").setup({
 
 	-- git
 	{ "tpope/vim-fugitive" },
+
+	--debug
+	{ "mfussenegger/nvim-dap" },
+	{
+		'rcarriga/nvim-dap-ui',
+		dependencies = { 'mfussenegger/nvim-dap', "nvim-neotest/nvim-nio" },
+		config = function()
+			require('dapui').setup()
+		end
+	},
 
 	-- auto complete
 	{ "hrsh7th/nvim-cmp" },
