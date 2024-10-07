@@ -1,5 +1,5 @@
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
 	snippet = {
@@ -21,7 +21,7 @@ cmp.setup({
 })
 
 -- Setup lspconfig.
-local ls = { 'clangd', 'pyright', 'lua_ls'}
+local ls = { 'pyright', 'lua_ls' }
 for i, server in ipairs(ls) do
 	require('lspconfig')[server].setup {
 		on_attach = on_attach,
@@ -29,4 +29,13 @@ for i, server in ipairs(ls) do
 	}
 end
 
-vim.opt.completeopt = {"menu", "menuone", "noselect"}
+require("lspconfig").clangd.setup {
+	on_attach = on_attach,
+	capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+	cmd = {
+		"clangd",
+		"--offset-encoding=utf-16",
+	},
+}
+
+vim.opt.completeopt = { "menu", "menuone", "noselect" }

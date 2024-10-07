@@ -15,25 +15,25 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- scheme
-	{ "tomasr/molokai", lazy = true },
-	{ "morhetz/gruvbox", lazy = true },
+	{ "tomasr/molokai",       lazy = true },
+	{ "morhetz/gruvbox",      lazy = true },
 
 	-- leetcode
-	{
-		"kawre/leetcode.nvim",
-		build = ":TSUpdate html",
-		dependencies = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim", -- required by telescope
-			"MunifTanjim/nui.nvim",
+	--{
+	--	"kawre/leetcode.nvim",
+	--	build = ":TSUpdate html",
+	--	dependencies = {
+	--		"nvim-telescope/telescope.nvim",
+	--		"nvim-lua/plenary.nvim", -- required by telescope
+	--		"MunifTanjim/nui.nvim",
 
-			-- optional
-			"rcarriga/nvim-notify",
-		},
-		opts = {
-			-- configuration goes here
-		},
-	},
+	--		-- optional
+	--		"rcarriga/nvim-notify",
+	--	},
+	--	opts = {
+	--		-- configuration goes here
+	--	},
+	--},
 
 	-- git
 	{ "tpope/vim-fugitive" },
@@ -54,6 +54,11 @@ require("lazy").setup({
 		cmd = "Mason",
 	},
 	{
+		'mrcjkb/rustaceanvim',
+		version = '^4', -- Recommended
+		lazy = false, -- This plugin is already lazy
+	},
+	{
 		"nvimdev/lspsaga.nvim",
 		event = "BufRead",
 		config = function()
@@ -72,7 +77,7 @@ require("lazy").setup({
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.clang_format,
 					null_ls.builtins.formatting.black,
-					null_ls.builtins.formatting.isort,
+					null_ls.builtins.formatting.rustfmt,
 				},
 				on_attach = function(client, bufnr)
 					if client.supports_method("textDocument/formatting") then
@@ -108,7 +113,20 @@ require("lazy").setup({
 
 	-- language support
 	{ "nvim-treesitter/nvim-treesitter" },
-	{ "jiangmiao/auto-pairs" },
+	{
+		'altermo/ultimate-autopair.nvim',
+		event = { 'InsertEnter', 'CmdlineEnter' },
+		branch = 'v0.6', --recommended as each new version will have breaking changes
+		opts = {
+			--Config goes here
+		},
+	},
+	{
+		'numToStr/Comment.nvim',
+		opts = {
+			-- add any options here
+		}
+	},
 
 	-- terminal
 	{ "akinsho/nvim-toggleterm.lua" },
