@@ -43,6 +43,8 @@ require("lazy").setup({
 	{ "hrsh7th/cmp-path" },
 	{ "hrsh7th/cmp-nvim-lsp" },
 	{ "hrsh7th/cmp-buffer" },
+	{ "dcampos/nvim-snippy" },
+	{ "dcampos/cmp-snippy" },
 
 	-- LSP
 	{ "neovim/nvim-lspconfig" },
