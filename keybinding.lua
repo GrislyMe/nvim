@@ -14,15 +14,6 @@ vim.api.nvim_create_user_command("W", ":w", {})
 -- command Q q
 vim.api.nvim_create_user_command("Q", ":q", {})
 
--- autoclose
---vim.api.nvim_set_keymap('i', '{', '{}<C-o>i', {})
-vim.api.nvim_set_keymap("i", "{<CR>", "{<CR>}<esc>ko", {})
--- vim.api.nvim_set_keymap('i', '(', '()<C-o>i', {})
--- vim.api.nvim_set_keymap('i', '[', '[]<C-o>i', {})
-
--- git
-vim.api.nvim_set_keymap("n", "<leader>gh", ":diffget //2<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>gl", ":diffget //3<CR>", {})
 
 -- change focus
 vim.api.nvim_set_keymap("n", "<leader>h", ":wincmd h<CR>", {})
@@ -65,3 +56,79 @@ vim.api.nvim_set_keymap("n", "<leader>o", ":LSoutlineToggle<CR>", {})
 vim.api.nvim_set_keymap("n", "<F2>", ":Lspsaga rename<CR>", {})
 vim.api.nvim_set_keymap("n", "e", ":Lspsaga diagnostic_jump_next<CR>", {})
 vim.api.nvim_set_keymap("n", "E", ":Lspsaga diagnostic_jump_prev<CR>", {})
+
+--git
+vim.api.nvim_set_keymap("n", "<leader>g", ":Neogit<CR>", {})
+
+-- hydra
+local DapHint  = [[
+_o_: Step out
+_s_: Step into
+_n_: Step over
+_N_: Step back
+_B_: Toggle break
+_<F5>_: Continue
+_X_: Terminate
+_*_: Run to cursor
+_e_: Eval
+_i_: Nil
+    ]]
+
+local DapHydra = require('hydra')
+DapHydra({
+	name = "DEBUG",
+	mode = 'n',
+	body = '<leader>d',
+	hint = DapHint,
+	config = {
+		desc = "Debug mode",
+		invoke_on_body = true,
+		hint = {
+			hide_on_load = false,
+			position = "middle-right",
+			show_name = true,
+		},
+		color = "pink",
+	},
+	heads = {
+		{ '<F5>', function() require('dap').continue() end },
+		{ 'B',    function() require('dap').toggle_breakpoint() end },
+		{ 'n',    function() require('dap').step_over() end },
+		{ 's',    function() require('dap').step_into() end },
+		{ 'e',
+			function() require('dapui').eval() end,
+			{ mode = 'v' }
+		},
+		{ "N", function() require("dap").step_back() end },
+		{ "o", function() require("dap").step_out() end },
+		{ "i", nil },
+		{ "X", function() require("dap").terminate() end },
+		{ "*", function() require("dap").run_to_cursor() end },
+	},
+})
+
+-- local GitHint  = [[
+-- _s_: open main page
+--     ]]
+--
+-- local neogit   = require('neogit')
+-- local GitHydra = require('hydra')
+-- GitHydra({
+-- 	name = "Git",
+-- 	mode = 'n',
+-- 	body = '<leader>g',
+-- 	hint = GitHint,
+-- 	config = {
+-- 		desc = "Git mode",
+-- 		invoke_on_body = true,
+-- 		hint = {
+-- 			hide_on_load = false,
+-- 			position = "middle-right",
+-- 			show_name = true,
+-- 		},
+-- 		color = "pink",
+-- 	},
+-- 	heads = {
+-- 		{ 's', function() neogit.open() end },
+-- 	},
+-- })

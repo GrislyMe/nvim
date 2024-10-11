@@ -1,6 +1,7 @@
 require('plugin')
 require('basic')
 require('debug_config')
+require('neogit')
 require('keybinding')
 require('treesitter')
 require('terminal')
