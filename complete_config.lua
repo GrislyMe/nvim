@@ -10,28 +10,56 @@ cmp.setup({
 	mapping = {
 		['<Tab>'] = cmp.mapping.select_next_item(),
 		['<S-Tab>'] = cmp.mapping.select_prev_item(),
-		['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
+		["<CR>"] = cmp.mapping({
+			i = function(fallback)
+				if cmp.visible() and cmp.get_active_entry() then
+					cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+				else
+					fallback()
+				end
+			end,
+			s = cmp.mapping.confirm({ select = true }),
+			c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+		}),
 	},
+	sources = cmp.config.sources(
+		{
+			{ name = 'copilot',  group_index = 2 },
+			{ name = 'nvim_lsp', group_index = 2 },
+			{ name = 'snippy',   group_index = 2 },
+			{ name = 'buffer',   group_index = 2 },
+			{ name = 'path',     group_index = 2 }
+		}
+	)
+})
+
+cmp.setup.cmdline({ '/', '?' }, {
+	mapping = cmp.mapping.preset.cmdline(),
 	sources = {
-		{ name = "copilot",  group_index = 2 },
-		{ name = 'nvim_lsp', group_index = 2 },
-		{ name = 'vsnip',    group_index = 2 },
-		{ name = 'buffer',   group_index = 2 },
-		{ name = 'path',     group_index = 2 }
+		{ name = 'buffer' }
 	}
 })
 
--- Setup lspconfig.
-local ls = { 'pyright' }
-for i, server in ipairs(ls) do
-	require('lspconfig')[server].setup {
-		on_attach = on_attach,
-		capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
-	}
-end
+cmp.setup.cmdline(':', {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({
+		{ name = 'path' }
+	}, {
+		{ name = 'cmdline' }
+	}),
+	matching = { disallow_symbol_nonprefix_matching = false }
+})
 
-require("lspconfig")['lua_ls'].setup {
-	on_attach = on_attach,
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
+
+-- Setup lspconfig.
+lspconfig.pyright.setup {
+	capabilities = capabilities,
+}
+
+lspconfig.lua_ls.setup {
+	capabilities = capabilities,
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -41,9 +69,8 @@ require("lspconfig")['lua_ls'].setup {
 	},
 }
 
-require("lspconfig")['clangd'].setup {
-	on_attach = on_attach,
-	capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
+lspconfig.clangd.setup {
+	capabilities = capabilities,
 	cmd = {
 		"clangd",
 		"--offset-encoding=utf-16",
