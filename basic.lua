@@ -1,4 +1,10 @@
+-- require("tokyonight").setup({
+-- 	style = "storm",
+-- 	transparent = true,
+-- })
+-- vim.cmd("colorscheme tokyonight-night")
 vim.cmd("colorscheme gruvbox")
+
 vim.cmd("set colorcolumn=80")
 vim.cmd("hi Normal guibg=NONE ctermbg=NONE")
 vim.cmd("set scl=yes:1")

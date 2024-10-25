@@ -13,15 +13,16 @@ cmp.setup({
 		['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace })
 	},
 	sources = {
-		{ name = 'nvim_lsp' },
-		{ name = 'vsnip' },
-		{ name = 'buffer' },
-		{ name = 'path' }
+		{ name = "copilot",  group_index = 2 },
+		{ name = 'nvim_lsp', group_index = 2 },
+		{ name = 'vsnip',    group_index = 2 },
+		{ name = 'buffer',   group_index = 2 },
+		{ name = 'path',     group_index = 2 }
 	}
 })
 
 -- Setup lspconfig.
-local ls = { 'pyright', 'lua_ls' }
+local ls = { 'pyright' }
 for i, server in ipairs(ls) do
 	require('lspconfig')[server].setup {
 		on_attach = on_attach,
@@ -29,7 +30,18 @@ for i, server in ipairs(ls) do
 	}
 end
 
-require("lspconfig").clangd.setup {
+require("lspconfig")['lua_ls'].setup {
+	on_attach = on_attach,
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { 'vim' },
+			},
+		},
+	},
+}
+
+require("lspconfig")['clangd'].setup {
 	on_attach = on_attach,
 	capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 	cmd = {
