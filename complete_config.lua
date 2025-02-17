@@ -109,8 +109,4 @@ lspconfig.clangd.setup {
 	},
 }
 
--- lspconfig.rust_analyzer.setup {
--- 	capabilities = capabilities,
--- }
-
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
