@@ -3,8 +3,6 @@ require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
 	},
+	indent = { enable = true },
+	fold = { enable = true }
 })
-
-vim.api.nvim_set_option("foldmethod", "expr")
-vim.api.nvim_set_option("foldexpr", "nvim_treesitter#foldexpr()")
-vim.api.nvim_set_option("foldlevelstart", 20)
