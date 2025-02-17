@@ -28,40 +28,6 @@ require("lazy").setup({
   },
   { "rebelot/kanagawa.nvim", lazy = true },
 
-  -- leetcode
-  --{
-  --	"kawre/leetcode.nvim",
-  --	build = ":TSUpdate html",
-  --	dependencies = {
-  --		"nvim-telescope/telescope.nvim",
-  --		"nvim-lua/plenary.nvim", -- required by telescope
-  --		"MunifTanjim/nui.nvim",
-
-  --		-- optional
-  --		"rcarriga/nvim-notify",
-  --	},
-  --	opts = {
-  --		-- configuration goes here
-  --	},
-  --},
-
-  -- git
-  -- { "tpope/vim-fugitive" }, {
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",  -- required
-      "sindrets/diffview.nvim", -- optional - Diff integration
-
-      -- Only one of these is needed.
-      "nvim-telescope/telescope.nvim", -- optional
-      -- "ibhagwan/fzf-lua",           -- optional
-      -- "echasnovski/mini.pick",      -- optional
-    },
-    config = true
-  },
-
-
   --debug
   { "mfussenegger/nvim-dap" },
   {
@@ -148,10 +114,10 @@ require("lazy").setup({
   },
 
   -- language support
-  -- {
-  --   "kevinhwang91/nvim-ufo",
-  --   dependencies = { "kevinhwang91/promise-async" }
-  -- },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { { "kevinhwang91/promise-async" } },
+  },
   { "nvim-treesitter/nvim-treesitter" },
   {
     'altermo/ultimate-autopair.nvim',
