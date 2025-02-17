@@ -24,10 +24,6 @@ vim.api.nvim_set_keymap("n", "<leader>l", ":wincmd l<CR>", {})
 -- toggle file mgr
 vim.api.nvim_set_keymap("n", "<leader>e", ":NvimTreeToggle<CR>", {})
 
--- floating terminal
-vim.api.nvim_set_keymap("n", "<leader>t", ":ToggleTerm<CR>", {})
-vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
-
 -- misc
 vim.api.nvim_set_keymap("i", "<Home>", "<Esc>^i", {})
 
@@ -52,13 +48,41 @@ vim.api.nvim_set_keymap("n", "<leader>a", ":Lspsaga code_action<CR>", {})
 vim.api.nvim_set_keymap("n", "gf", ":Lspsaga finder<CR>", {})
 vim.api.nvim_set_keymap("n", "gd", ":Lspsaga peek_definition<CR>", {})
 vim.api.nvim_set_keymap("n", "gt", ":Lspsaga goto_definition<CR>", {})
-vim.api.nvim_set_keymap("n", "<leader>o", ":LSoutlineToggle<CR>", {})
 vim.api.nvim_set_keymap("n", "<F2>", ":Lspsaga rename<CR>", {})
 vim.api.nvim_set_keymap("n", "e", ":Lspsaga diagnostic_jump_next<CR>", {})
 vim.api.nvim_set_keymap("n", "E", ":Lspsaga diagnostic_jump_prev<CR>", {})
 
+
+-- floating terminal
+vim.api.nvim_set_keymap("n", "<leader>t", ":ToggleTerm<CR>", {})
+vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
+
 --git
-vim.api.nvim_set_keymap("n", "<leader>g", ":Neogit<CR>", {})
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({
+  cmd = "lazygit",
+  dir = "git_dir",
+  direction = "float",
+  float_opts = {
+    border = "double",
+  },
+  -- function to run on opening the terminal
+  on_open = function(term)
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+    vim.api.nvim_del_keymap("t", "<Esc>")
+  end,
+  -- function to run on closing the terminal
+  on_close = function(term)
+    vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", {})
+  end,
+})
+
+
+function Lazygit_toggle()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua Lazygit_toggle()<CR>", { noremap = true, silent = true })
 
 -- hydra
 local DapHint  = [[
@@ -76,35 +100,35 @@ _i_: Nil
 
 local DapHydra = require('hydra')
 DapHydra({
-	name = "DEBUG",
-	mode = 'n',
-	body = '<leader>d',
-	hint = DapHint,
-	config = {
-		desc = "Debug mode",
-		invoke_on_body = true,
-		hint = {
-			hide_on_load = false,
-			position = "middle-right",
-			show_name = true,
-		},
-		color = "pink",
-	},
-	heads = {
-		{ '<F5>', function() require('dap').continue() end },
-		{ 'B',    function() require('dap').toggle_breakpoint() end },
-		{ 'n',    function() require('dap').step_over() end },
-		{ 's',    function() require('dap').step_into() end },
-		{ 'e',
-			function() require('dapui').eval() end,
-			{ mode = 'v' }
-		},
-		{ "N", function() require("dap").step_back() end },
-		{ "o", function() require("dap").step_out() end },
-		{ "i", nil },
-		{ "X", function() require("dap").terminate() end },
-		{ "*", function() require("dap").run_to_cursor() end },
-	},
+  name = "DEBUG",
+  mode = 'n',
+  body = '<leader>d',
+  hint = DapHint,
+  config = {
+    desc = "Debug mode",
+    invoke_on_body = true,
+    hint = {
+      hide_on_load = false,
+      position = "middle-right",
+      show_name = true,
+    },
+    color = "pink",
+  },
+  heads = {
+    { '<F5>', function() require('dap').continue() end },
+    { 'B',    function() require('dap').toggle_breakpoint() end },
+    { 'n',    function() require('dap').step_over() end },
+    { 's',    function() require('dap').step_into() end },
+    { 'e',
+      function() require('dapui').eval() end,
+      { mode = 'v' }
+    },
+    { "N", function() require("dap").step_back() end },
+    { "o", function() require("dap").step_out() end },
+    { "i", nil },
+    { "X", function() require("dap").terminate() end },
+    { "*", function() require("dap").run_to_cursor() end },
+  },
 })
 
 -- local GitHint  = [[
